@@ -1,23 +1,17 @@
-
-
 html, body {
     height: 100%; 
     margin: 0;
 }
 
-
-
-
-
-
+/* Playground styling */
 .playground {
     display: flex;
     justify-content: center;
     background-color: rgba(65, 105, 225, 0.514);
     height: 100%;
-
 }
 
+/* Pack styling */
 .pack {
     width: 220px;
     height: 380px;
@@ -27,6 +21,7 @@ html, body {
     border: 2px solid black;
     display: block;
     overflow: hidden; 
+    transition: transform 0.7s ease;
 }
 
 .pack_button {
@@ -48,45 +43,81 @@ html, body {
 }
 
 .pack:hover {
-    transition: transform 1s;
+    transition: transform 0.7s;
     transform: scale(1.2);
 }
 
-/* .pack_button:active {
-    transform: scale(0.98); 
-} */
-
-
-
+/* Card container styling */
 .card-container {
     display: flex;
     margin: 30vh 0 0 0;
     justify-content: center; 
-
 }
 
+/* Card styling */
 .card {
     width: 220px;
     height: 380px;
-    background-color: lightblue;
+    background-color: #e0f7fa;
+    border: 2px solid black;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 0 10px;
+    transition: transform 0.5s;
+}
+
+.card:hover {
+    transform: scale(1.2);
+}
+
+/* Card header styling */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Card image styling */
+.card-image {
+    width: 100%;
+    height: 120px;
+    background-color: #b2ebf2;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    border: 2px solid black;
-    border-radius: 20px;
-    margin: 0 10px 0 10px ;
-
-
-
+    border: 1px dashed black;
+    margin: 10px 0;
 }
 
+/* Card content styling */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
+/* Energy and attack styling */
+.energy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
 
+.attack-damage {
+    font-weight: bold;
+    font-size: 16px;
+}
 
-
-
-
-
+/* Special skill styling */
+.special-skill {
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+    margin-top: 10px;
+}

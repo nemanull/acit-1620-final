@@ -40,6 +40,13 @@ const rarities = [
 
 const people = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace"];
 
+
+
+
+
+
+
+
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -58,6 +65,13 @@ function getRandomRarity() {
         }
     }
 }
+
+
+
+
+
+
+
 
 shuffleArray(people);
 
