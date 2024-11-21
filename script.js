@@ -1,20 +1,20 @@
 
-
-
-
-
-
-
 teachers = [
     {
         teacher_name: "Test_name1",
         hp: "110",
         type: "water",
         attacks: {
-            splash: "30",
-            hit: "70",
-            splash_energy: 3,
-            hit_energy: 4
+            attack_1: {
+                attack_name: "splash",
+                attack_damage: "30",
+                attack_energy_require: "3"
+            },
+            attack_2: {
+                attack_name: "hit",
+                attack_damage: "70",
+                attack_energy_require: "4"
+            }
         },
         special_skill: "bonus mark"
     },
@@ -23,10 +23,16 @@ teachers = [
         hp: "120",
         type: "fire",
         attacks: {
-            flame: "40",
-            burn: "80",
-            flame_energy: 2,
-            burn_energy: 3
+            attack_1: {
+                attack_name: "flame",
+                attack_damage: "40",
+                attack_energy_require: "2"
+            },
+            attack_2: {
+                attack_name: "burn",
+                attack_damage: "80",
+                attack_energy_require: "3"
+            }
         },
         special_skill: "extra credit"
     },
@@ -35,10 +41,16 @@ teachers = [
         hp: "130",
         type: "earth",
         attacks: {
-            quake: "50",
-            crush: "90",
-            quake_energy: 4,
-            crush_energy: 2
+            attack_1: {
+                attack_name: "quake",
+                attack_damage: "50",
+                attack_energy_require: "4"
+            },
+            attack_2: {
+                attack_name: "crush",
+                attack_damage: "90",
+                attack_energy_require: "2"
+            }
         },
         special_skill: "homework pass"
     },
@@ -47,10 +59,16 @@ teachers = [
         hp: "140",
         type: "air",
         attacks: {
-            gust: "60",
-            blow: "100",
-            gust_energy: 1,
-            blow_energy: 3
+            attack_1: {
+                attack_name: "gust",
+                attack_damage: "60",
+                attack_energy_require: "1"
+            },
+            attack_2: {
+                attack_name: "blow",
+                attack_damage: "100",
+                attack_energy_require: "3"
+            }
         },
         special_skill: "study guide"
     },
@@ -59,10 +77,16 @@ teachers = [
         hp: "150",
         type: "electric",
         attacks: {
-            shock: "70",
-            zap: "110",
-            shock_energy: 3,
-            zap_energy: 4
+            attack_1: {
+                attack_name: "shock",
+                attack_damage: "70",
+                attack_energy_require: "3"
+            },
+            attack_2: {
+                attack_name: "zap",
+                attack_damage: "110",
+                attack_energy_require: "4"
+            }
         },
         special_skill: "free period"
     },
@@ -71,10 +95,16 @@ teachers = [
         hp: "160",
         type: "ice",
         attacks: {
-            freeze: "80",
-            chill: "120",
-            freeze_energy: 2,
-            chill_energy: 4
+            attack_1: {
+                attack_name: "freeze",
+                attack_damage: "80",
+                attack_energy_require: "2"
+            },
+            attack_2: {
+                attack_name: "chill",
+                attack_damage: "120",
+                attack_energy_require: "4"
+            }
         },
         special_skill: "extra recess"
     },
@@ -83,14 +113,21 @@ teachers = [
         hp: "170",
         type: "psychic",
         attacks: {
-            mind_blast: "90",
-            telekinesis: "130",
-            mind_blast_energy: 4,
-            telekinesis_energy: 3
+            attack_1: {
+                attack_name: "mind_blast",
+                attack_damage: "90",
+                attack_energy_require: "4"
+            },
+            attack_2: {
+                attack_name: "telekinesis",
+                attack_damage: "130",
+                attack_energy_require: "3"
+            }
         },
         special_skill: "field trip"
     }
-]
+];
+
 
 
 const rarities = [
@@ -102,27 +139,6 @@ const rarities = [
     { name: "Legendary", probability: 0.005}
 ];
 
-function getAttacks(attackObj) {
-    let attacks = [];
-    let keys = Object.keys(attackObj);
-
-    // Extract attack names and their corresponding data
-    for (let i = 0; i < keys.length; i++) {
-        if (!keys[i].endsWith('_energy')) {
-            let attackName = keys[i];
-            let damage = attackObj[keys[i]];
-            let energyKey = attackName + '_energy';
-            let energy = attackObj[energyKey];
-
-            attacks.push({
-                name: attackName,
-                energy: energy,
-                damage: damage
-            });
-        }
-    }
-    return attacks;
-}
 
 function packOpen() {
     const playground = document.getElementById('playground');
@@ -149,9 +165,6 @@ function packOpen() {
         let teacherIndex = Math.floor(Math.random() * teachers.length);
         let teacher = teachers[teacherIndex];
 
-        // Get attacks data
-        let attacks = getAttacks(teacher.attacks);
-
         // Create card element
         const newCard = document.createElement('div');
         newCard.className = 'card';
@@ -166,12 +179,14 @@ function packOpen() {
                 <p>${teacher.teacher_name}</p>
             </div>
             <div class="card-content">
-                ${attacks.map(attack => `
                 <div class="energy">
-                    <div>${attack.energy} ${attack.name}</div>
-                    <div class="attack-damage">${attack.damage}</div>
+                    <div>${teacher.attacks.attack_1.attack_energy_require} ${teacher.attacks.attack_1.attack_name}</div>
+                    <div class="attack-damage">${teacher.attacks.attack_1.attack_damage}</div>
                 </div>
-                `).join('')}
+                <div class="energy">
+                    <div>${teacher.attacks.attack_2.attack_energy_require} ${teacher.attacks.attack_2.attack_name}</div>
+                    <div class="attack-damage">${teacher.attacks.attack_2.attack_damage}</div>
+                </div>
             </div>
             <div class="special-skill">Special Skill: ${teacher.special_skill}</div>
         `;
